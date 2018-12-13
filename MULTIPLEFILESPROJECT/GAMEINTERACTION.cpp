@@ -2,6 +2,7 @@
 #include <iostream> //allows me to input and output
 #include <string> //allows me to use strings
 #include <algorithm> // allows me to do fancy string magic like making a string uppercase 
+#include "TennisBall.h"
 using namespace std; // makes it so i dont have to type std so much
 
 // did you win or not
@@ -19,14 +20,20 @@ bool tableOpen = false;//initializes variable at false
 bool writtenPaper = false;//initializes variable at false
 bool gotNumber = false;//initializes variable at false
 bool doorLocked = true;//initializes variable at true
+TennisBall BoredBall;
 
 void look(string object) // function to determine what the player is trying to look at and gives them a description
 {
-	if (object == "CHAIR")
+	if (object == "BALL")
+	{
+		BoredBall.look();
+		cout << "\n";
+	}
+	else if (object == "CHAIR")
 	{
 		if (paper)
 		{
-			cout << "The recliner's cushion is still on the floor from when you searched it"; // prints text to console
+			cout << "The recliner's cushion is still on the floor from when you searched it\n"; // prints text to console
 		}
 		else
 		{
@@ -68,7 +75,7 @@ void look(string object) // function to determine what the player is trying to l
 	}
 	else if (object == "ROOM")
 	{
-		cout << "The room is a small square, with bright blue walls, a brown DOOR, a red CHAIR, a TABLE with a PHONE on top of it, a PAINTING, a VACUUM TUBE system, a blue and white checker-boarded floor, and a WINDOW.\n";// prints text to console
+		cout << "The room is a small square, with bright blue walls, a brown DOOR, a red CHAIR, a TABLE with a PHONE on top of it, a PAINTING, a VACUUM TUBE system, a blue and white checker-boarded floor, a tennis BALL, and a WINDOW.\n";// prints text to console
 	}
 	else if (object == "PENCIL")
 	{
@@ -116,8 +123,13 @@ void look(string object) // function to determine what the player is trying to l
 void use(string object) // this function determines the objects which the player is trying to use together or to activate and performs their functions
 {
 	string userInput; // holds the user's input for this function
-
-	if (object == "PHONE")
+	if (object == "BALL")
+	{
+		cout << "What will you throw the ball at?\n";
+		getline(cin, userInput); // gets user input
+		BoredBall.Throw(userInput);
+	}
+	else if (object == "PHONE")
 	{
 		if (!phoneCall)
 		{
@@ -485,7 +497,7 @@ bool gamePlay()
 	string userInput; // stores user input
 
 	cout << "You awaken in an unknown ROOM. You cannot remember how you got here. All you know is that you are trapped and must escape.\n";// prints text to console
-	cout << "You LOOK around the ROOM, and see that the ROOM is a small square with bright blue walls, a brown DOOR, a red CHAIR, a TABLE with a PHONE on top of it, a VACUUM TUBE, a PAINTING, a blue and white checker-boarded floor, and a WINDOW.\n";// prints text to console
+	cout << "You LOOK around the ROOM, and see that the ROOM is a small square with bright blue walls, a brown DOOR, a red CHAIR, a TABLE with a PHONE on top of it, a VACUUM TUBE, a PAINTING, a blue and white checker-boarded floor, a tennis BALL, and a WINDOW.\n";// prints text to console
 
 
 	while (!escaped)
